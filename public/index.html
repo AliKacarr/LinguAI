@@ -5,9 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LinguAI</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    Ana sayfa
+    <header>
+        <div class="logo">LinguAI</div>
+        <nav>
+            <ul>
+                <li><a href="#">Ana Sayfa</a></li>
+                <li><a href="#">Hakkımızda</a></li>
+                <li><a href="#">İletişim</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="login-btn" id="loginBtn">Giriş Yap</button>
+            <button class="register-btn" id="registerBtn">Kayıt Ol</button>
+        </div>
+    </header>
+    
+    <main>
+        Ana sayfa
+    </main>
+
+    <!-- Login Form -->
+    <div class="auth-container" id="loginContainer">
+        <div class="auth-form">
+            <span class="close-btn" id="loginCloseBtn">&times;</span>
+            <h2>Giriş Yap</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">E-posta</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Şifre</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Giriş Yap</button>
+                </div>
+                <div class="form-switch">
+                    Hesabınız yok mu? <a id="switchToRegister">Kayıt Ol</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Form -->
+    <div class="auth-container" id="registerContainer">
+        <div class="auth-form">
+            <span class="close-btn" id="registerCloseBtn">&times;</span>
+            <h2>Kayıt Ol</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Ad Soyad</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">E-posta</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Şifre</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Şifre Tekrar</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Kayıt Ol</button>
+                </div>
+                <div class="form-switch">
+                    Zaten hesabınız var mı? <a id="switchToLogin">Giriş Yap</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

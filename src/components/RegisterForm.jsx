@@ -28,6 +28,17 @@ function RegisterForm({ onClose, onSwitchToLogin, onRegisterSuccess }) {
     e.preventDefault()
     setError('')
     
+    // Validate input lengths
+    if (formData.name.length < 5) {
+      setError('Kullanıcı adı en az 5 karakter olmalıdır!')
+      return
+    }
+
+    if (formData.password.length < 5) {
+      setError('Şifre en az 5 karakter olmalıdır!')
+      return
+    }
+
     // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       setError('Şifreler eşleşmiyor!')
@@ -37,18 +48,21 @@ function RegisterForm({ onClose, onSwitchToLogin, onRegisterSuccess }) {
     setIsLoading(true)
     
     try {
-      const { success } = await authService.register(
+      const { success, user } = await authService.register(
         formData.name,
         formData.email,
         formData.password
       )
       
       if (success) {
-        onRegisterSuccess()
+        // Başarılı kayıt mesajı göster
+        setError('')
+        // Kullanıcı bilgilerini App bileşenine gönder ve formu kapat
+        onRegisterSuccess(user)
       }
     } catch (error) {
       console.error('Registration error:', error)
-      setError('Kayıt sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin.')
+      setError(error.message)
     } finally {
       setIsLoading(false)
     }

@@ -11,10 +11,10 @@ router.post('/register', async (req, res) => {
     res.status(201).json(result);
   } catch (error) {
     console.error("Registration error:", error);
-    if (error.message === "This email is already registered") {
+    if (error.message.includes("zaten kayıtlı")) {
       res.status(400).json({ message: error.message });
     } else {
-      res.status(500).json({ message: "An error occurred during registration" });
+      res.status(500).json({ message: "Kayıt sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin." });
     }
   }
 });
@@ -30,10 +30,10 @@ router.post('/login', async (req, res) => {
     res.status(200).json({ message: "Login successful", user: userInfo });
   } catch (error) {
     console.error("Login error:", error);
-    if (error.message === "Email or password incorrect") {
+    if (error.message.includes("şifre yanlış") || error.message.includes("kayıtlı değil")) {
       res.status(400).json({ message: error.message });
     } else {
-      res.status(500).json({ message: "An error occurred during login" });
+      res.status(500).json({ message: "Giriş sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin." });
     }
   }
 });

@@ -11,15 +11,16 @@ class AuthService {
       
       const data = await response.json();
       
-      if (response.ok) {
+      if (response.ok && data.user) {
         localStorage.setItem('user', JSON.stringify(data.user));
         return { success: true, user: data.user };
       } else {
-        throw new Error(data.message || 'Giriş başarısız');
+        throw new Error(data.message);
       }
     } catch (error) {
       console.error('Login error:', error);
-      throw new Error('Giriş sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+      const errorMessage = error.message || 'Giriş sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin.';
+      throw new Error(errorMessage);
     }
   }
 
@@ -35,14 +36,16 @@ class AuthService {
       
       const data = await response.json();
       
-      if (response.ok) {
-        return { success: true };
+      if (response.ok && data.user) {
+        localStorage.setItem('user', JSON.stringify(data.user));
+        return { success: true, user: data.user };
       } else {
-        throw new Error(data.message || 'Kayıt başarısız');
+        throw new Error(data.message);
       }
     } catch (error) {
       console.error('Registration error:', error);
-      throw new Error('Kayıt sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+      const errorMessage = error.message || 'Kayıt sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin.';
+      throw new Error(errorMessage);
     }
   }
 

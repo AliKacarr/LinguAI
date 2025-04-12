@@ -10,10 +10,18 @@ function App() {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    // Check if user is already logged in
-    const storedUser = localStorage.getItem('user')
-    if (storedUser) {
-      setUser(JSON.parse(storedUser))
+    try {
+      const storedUser = localStorage.getItem('user')
+      if (storedUser && typeof storedUser === 'string') {
+        const parsedUser = JSON.parse(storedUser)
+        if (parsedUser && typeof parsedUser === 'object') {
+          setUser(parsedUser)
+        }
+      }
+    } catch (error) {
+      console.error('Kullanıcı verisi yüklenirken hata oluştu:', error)
+      localStorage.removeItem('user') // Geçersiz veriyi temizle
+      setUser(null)
     }
   }, [])
 
@@ -59,9 +67,9 @@ function App() {
             setShowRegister(false)
             setShowLogin(true)
           }}
-          onRegisterSuccess={() => {
+          onRegisterSuccess={(userData) => {
+            setUser(userData)
             setShowRegister(false)
-            setShowLogin(true)
           }}
         />
       )}

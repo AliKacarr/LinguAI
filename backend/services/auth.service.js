@@ -8,7 +8,7 @@ class AuthService {
     // Check if email already exists
     const existingUser = await userCollection.findOne({ email });
     if (existingUser) {
-      throw new Error("This email is already registered");
+      throw new Error("Bu e-posta adresi zaten kayıtlı. Lütfen başka bir e-posta adresi kullanın.");
     }
     
     // Hash password
@@ -22,7 +22,16 @@ class AuthService {
       createdAt: new Date()
     });
     
-    return { message: "Registration successful" };
+    // Return user info (excluding password)
+    return {
+      message: "Registration successful",
+      user: {
+        _id: result.insertedId.toString(),
+        name,
+        email,
+        createdAt: new Date()
+      }
+    };
   }
 
   async loginUser(email, password) {
@@ -31,13 +40,13 @@ class AuthService {
     // Find user
     const user = await userCollection.findOne({ email });
     if (!user) {
-      throw new Error("Email or password incorrect");
+      throw new Error("Bu e-posta adresi kayıtlı değil. Lütfen önce kayıt olun.");
     }
     
     // Check password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      throw new Error("Email or password incorrect");
+      throw new Error("Girdiğiniz şifre yanlış. Lütfen tekrar deneyin.");
     }
     
     // Return user info (excluding password)

@@ -49,6 +49,10 @@
   font-family: 'Arial', sans-serif;
 }
 
+main {
+  padding-top: 60px; /* Header'ın yüksekliği + ekstra boşluk */
+}
+
 body {
   background-color: #f5f5f5;
 }

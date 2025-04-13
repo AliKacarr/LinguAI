@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/Header.css'
 
-function Header({ user, onLoginClick, onRegisterClick, onLogout }) {
+function Header({ user, onLoginClick, onRegisterClick, onLogout, onProfileClick }) {
   return (
     <header>
       <div className="logo">LinguAI</div>
@@ -17,7 +17,7 @@ function Header({ user, onLoginClick, onRegisterClick, onLogout }) {
         {user ? (
           <>
             <span>Merhaba, {user.name}</span>
-            <button className="logout-btn" onClick={onLogout}>Çıkış Yap</button>
+            <button className="logout-btn" onClick={onProfileClick}>Profil</button>
           </>
         ) : (
           <>

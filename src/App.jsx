@@ -3,6 +3,7 @@ import './App.css'
 import Header from './components/Header'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
+import Profile from './components/Profile'
 
 function App() {
   const [showLogin, setShowLogin] = useState(false)
@@ -25,10 +26,26 @@ function App() {
     }
   }, [])
 
+  const [showProfile, setShowProfile] = useState(false);
+
+  const handleProfile = () => {
+    setShowLogin(false);
+    setShowRegister(false);
+    setShowProfile(true);
+  };
+
+  const handleLogin = () => {
+    setShowLogin(true);
+  };
+
+  const handleRegister = () => {
+    setShowRegister(true);
+  };
+
   const handleLogout = () => {
-    localStorage.removeItem('user')
-    setUser(null)
-  }
+    localStorage.removeItem('user');
+    setUser(null);
+  };
 
   return (
     <>
@@ -37,6 +54,7 @@ function App() {
         onLoginClick={() => setShowLogin(true)} 
         onRegisterClick={() => setShowRegister(true)}
         onLogout={handleLogout}
+        onProfileClick={handleProfile} // Profil butonuna tıklama işlevi
       />
       
       <main>
@@ -54,8 +72,8 @@ function App() {
             setShowRegister(true)
           }}
           onLoginSuccess={(userData) => {
-            setUser(userData)
-            setShowLogin(false)
+            setUser(userData);
+            setShowLogin(false);
           }}
         />
       )}
@@ -73,8 +91,22 @@ function App() {
           }}
         />
       )}
+
+      {showProfile && (
+  <div className="modal">
+    <Profile 
+      user={user} 
+      onLogout={() => {
+        handleLogout();
+        setShowProfile(false);
+      }}
+      onClose={() => setShowProfile(false)}
+    />
+    <button className="close-btn" onClick={() => setShowProfile(false)}>&times;</button>
+  </div>
+)}
     </>
-  )
+  );
 }
 
 export default App

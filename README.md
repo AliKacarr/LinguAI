@@ -39,7 +39,7 @@ LinguAI, yapay zeka destekli interaktif **dil öğrenme** uygulamasıdır. Kulla
 |:--------------:|:-------------:|:-----------------:|
 | <img src="assets/images/Screenshots/4- Profil.png" width="250"> | <img src="assets/images/Screenshots/5- Ana Sayfa.png" width="250"> | <img src="assets/images/Screenshots/6- Seviye Arayüzü.png" width="250"> |
 
-| **Seviye Kelimeleri** | **Çeviri Egzersizi** | **Geçmiş Egzersizler** |
+| **Kelime Listesi** | **AI Destekli Çeviri** | **Geçmiş Egzersizler** |
 |:----------------:|:------------:|:--------------------:|
 | <img src="assets/images/Screenshots/7- Level Kelimeleri.png" width="250"> | <img src="assets/images/Screenshots/8- Türkçeden İngilizceye Çeviri.png" width="250"> | <img src="assets/images/Screenshots/9- Geçmiş Egzersizler.png" width="250"> |
 
